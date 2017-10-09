@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import jokester.fest.dev.jokester.R;
 
@@ -28,12 +30,18 @@ public class FragmentTwo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootview = inflater.inflate(R.layout.fragment_two,container,false);
+        return rootview;
+    }
 
-
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         Bundle args = getArguments();
         String strSearchType = (String) args.getCharSequence("SearchType", "?");
 
-        return rootview;
+        TextView txtJokeListInfo = (TextView) view.findViewById(R.id.txtJokeListInfo);
+        txtJokeListInfo.setText("Joke list: " + strSearchType);
+
+        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
