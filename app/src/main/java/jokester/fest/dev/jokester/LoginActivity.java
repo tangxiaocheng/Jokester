@@ -1,6 +1,7 @@
 package jokester.fest.dev.jokester;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.AttributeSet;
@@ -21,8 +22,9 @@ public class LoginActivity extends AppCompatActivity {
         cmdGoogleSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(LoginActivity.this, "Logging in ...NOT!",Toast.LENGTH_LONG).show();
-
+//                Toast.makeText(LoginActivity.this, "Logging in ...NOT!",Toast.LENGTH_LONG).show();
+                Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(myIntent);
             }
         });
 
