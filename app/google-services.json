@@ -59,6 +59,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "507929417063-kss6647qr3dbhfsvfcfa7j8frq9gqe3v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "jokester.fest.dev.jokester",
+            "certificate_hash": "af50b3c3435fe5bcbebdc3ebcaf851e2ab84efda"
+          }
+        },
+        {
           "client_id": "507929417063-r8v8d2m7vr8her4a3v90m6n88iv2vt5n.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
