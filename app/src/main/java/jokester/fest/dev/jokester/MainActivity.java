@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
@@ -40,6 +43,14 @@ public class MainActivity extends AppCompatActivity {
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+
+        DatabaseReference myRef = database.getReference("dev_jokes");
+        myRef.setValue("Hello, World! Funny jokes");
+
+
     }
 
 }
