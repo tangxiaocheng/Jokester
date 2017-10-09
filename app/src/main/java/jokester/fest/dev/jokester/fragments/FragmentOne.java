@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import jokester.fest.dev.jokester.R;
 
@@ -33,6 +35,15 @@ public class FragmentOne extends Fragment {
         m_txtJokeText= (EditText) view.findViewById(R.id.txtNewJoke);
 //        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 //        imm.showSoftInput(m_txtJokeText, InputMethodManager.SHOW_IMPLICIT);
+
+        Button btnAddJoke = (Button) view.findViewById(R.id.cmdAddJoke);
+        btnAddJoke.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Your joke has been added ... NOT!",Toast.LENGTH_LONG).show();
+                m_txtJokeText.setText("");
+            }
+        });
 
     }
 
