@@ -7,9 +7,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="fragment one"
+        android:text="Enter a really funny joke:"
         android:layout_marginTop="25dp"
         android:id="@+id/one_tv"
         android:padding="@dimen/padding_normal"
         android:layout_gravity="center" />
+
+    <EditText
+        android:id="@+id/txtNewJoke"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add" />
+
+
 </LinearLayout>
