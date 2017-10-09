@@ -42,6 +42,9 @@ public class FragmentOne extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "Your joke has been added ... NOT!",Toast.LENGTH_LONG).show();
                 m_txtJokeText.setText("");
+                InputMethodManager imgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imgr.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
             }
         });
 
