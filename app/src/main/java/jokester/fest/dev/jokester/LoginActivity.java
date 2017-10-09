@@ -11,7 +11,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -31,8 +33,8 @@ public class LoginActivity extends AppCompatActivity {
         cmdGoogleSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SignInFake();
-//                SignInReal();
+//                LaunchMainActivity();
+                SignInReal();
             }
         });
 
@@ -44,7 +46,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
                 Toast.makeText(LoginActivity.this, "Google connection failure",Toast.LENGTH_LONG).show();
-
             }
         };
 
@@ -61,9 +62,33 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void SignInFake() {
+    private void LaunchMainActivity() {
         Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(myIntent);
     }
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInResult(result);
+        }
+    }
+
+
+    private void handleSignInResult(GoogleSignInResult result) {
+        if (result.isSuccess()) {
+            // Signed in successfully, show authenticated UI.
+            GoogleSignInAccount acct = result.getSignInAccount();
+            Toast.makeText(LoginActivity.this, "Signed in ... yay!",Toast.LENGTH_LONG).show();
+            LaunchMainActivity();
+        } else {
+            // Signed out, show unauthenticated UI.
+            Toast.makeText(LoginActivity.this, "Unable to sign in",Toast.LENGTH_LONG).show();
+        }
+    }
 }
