@@ -17,6 +17,7 @@ import jokester.fest.dev.jokester.R;
  */
 public class FragmentOne extends Fragment {
 
+    EditText m_txtJokeText;
 
     @Nullable
     @Override
@@ -29,9 +30,9 @@ public class FragmentOne extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        EditText yourEditText= (EditText) view.findViewById(R.id.txtNewJoke);
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(yourEditText, InputMethodManager.SHOW_IMPLICIT);
+        m_txtJokeText= (EditText) view.findViewById(R.id.txtNewJoke);
+//        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.showSoftInput(m_txtJokeText, InputMethodManager.SHOW_IMPLICIT);
 
     }
 
@@ -45,6 +46,11 @@ public class FragmentOne extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        m_txtJokeText.requestFocus();
+
+        InputMethodManager imgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imgr.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+
     }
 
     @Override
