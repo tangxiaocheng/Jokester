@@ -11,14 +11,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import jokester.fest.dev.jokester.fragments.FragmentOne;
 import jokester.fest.dev.jokester.fragments.FragmentTwo;
+import jokester.fest.dev.jokester.fragments.JokeModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -67,6 +71,22 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
+    //
+//    FirebaseAppJokes
+//            jokesByList
+// -Kw1YwqS9Tr7RVaCGHPm
+//    author:
+//            "testAuthor"
+//    body:
+//            "testBody"
+//    title:
+//            "testTitle"
+//    uid:
+//            "sEuuQb7qyxeQ4qQ0HRHPrSdTnVn2"
+//    viewCount:
+//            0
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,20 +96,9 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
-        DatabaseReference myRef = database.getReference("dev_jokes");
 
-
-        List<Joke> jokes = new ArrayList<Joke>();
-        jokes.add(new Joke("knife is one dollar", "2017-10-9", "nouser", "0", "jokeid_test"));
-        jokes.add(new Joke("knife is one dollar2", "2017-10-9", "nouser", "0", "jokeid_test2"));
-        jokes.add(new Joke("knife is one dollar3", "2017-10-9", "nouser", "0", "jokeid_test3"));
-        jokes.add(new Joke("knife is one dollar4", "2017-10-9", "nouser", "0", "jokeid_test4"));
-
-
-        myRef.setValue(jokes);
 
         changeFragment(0);
 
