@@ -1,11 +1,14 @@
 package jokester.fest.dev.jokester;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.AttributeSet;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
     };
+
+    @Override
+    public View onCreateView(String name, Context context, AttributeSet attrs) {
+        return super.onCreateView(name, context, attrs);
+    }
 
     private void changeFragment(int position) {
 
@@ -81,7 +89,10 @@ public class MainActivity extends AppCompatActivity {
 
         myRef.setValue(jokes);
 
+        changeFragment(0);
 
     }
+
+
 
 }
