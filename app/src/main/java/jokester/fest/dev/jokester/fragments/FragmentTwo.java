@@ -14,11 +14,24 @@ import jokester.fest.dev.jokester.R;
  */
 public class FragmentTwo extends Fragment {
 
+    public static FragmentTwo newInstance(String SearchType) {
+        FragmentTwo f = new FragmentTwo();
+        // Supply index input as an argument.
+        Bundle args = new Bundle();
+        args.putCharSequence("SearchType", SearchType);
+        f.setArguments(args);
+        return f;
+    }
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootview = inflater.inflate(R.layout.fragment_two,container,false);
+
+
+        Bundle args = getArguments();
+        String strSearchType = (String) args.getCharSequence("SearchType", "?");
 
         return rootview;
     }

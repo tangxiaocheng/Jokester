@@ -56,8 +56,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (position == 0) {
             newFragment = new FragmentOne();
+        } else if (position == 1) {
+            newFragment = FragmentTwo.newInstance("BEST");
         } else {
-            newFragment = new FragmentTwo();
+            newFragment = FragmentTwo.newInstance("RECENT");
         }
 
         getFragmentManager().beginTransaction().replace(
