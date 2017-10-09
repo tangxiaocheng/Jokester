@@ -1,5 +1,6 @@
 package jokester.fest.dev.jokester;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -13,6 +14,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import jokester.fest.dev.jokester.fragments.FragmentOne;
+import jokester.fest.dev.jokester.fragments.FragmentTwo;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
@@ -24,13 +28,13 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    changeFragment(0);
                     return true;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                    changeFragment(1);
                     return true;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                    changeFragment(2);
                     return true;
             }
             return false;
@@ -38,12 +42,27 @@ public class MainActivity extends AppCompatActivity {
 
     };
 
+    private void changeFragment(int position) {
+
+        Fragment newFragment = null;
+
+        if (position == 0) {
+            newFragment = new FragmentOne();
+        } else {
+            newFragment = new FragmentTwo();
+        }
+
+        getFragmentManager().beginTransaction().replace(
+                R.id.fragmentContainer, newFragment)
+                .commit();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
+//        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -54,10 +73,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         List<Joke> jokes = new ArrayList<Joke>();
-        jokes.add(new Joke("knife is one dollar","2017-10-9","nouser","0","jokeid_test"));
-        jokes.add(new Joke("knife is one dollar2","2017-10-9","nouser","0","jokeid_test2"));
-        jokes.add(new Joke("knife is one dollar3","2017-10-9","nouser","0","jokeid_test3"));
-        jokes.add(new Joke("knife is one dollar4","2017-10-9","nouser","0","jokeid_test4"));
+        jokes.add(new Joke("knife is one dollar", "2017-10-9", "nouser", "0", "jokeid_test"));
+        jokes.add(new Joke("knife is one dollar2", "2017-10-9", "nouser", "0", "jokeid_test2"));
+        jokes.add(new Joke("knife is one dollar3", "2017-10-9", "nouser", "0", "jokeid_test3"));
+        jokes.add(new Joke("knife is one dollar4", "2017-10-9", "nouser", "0", "jokeid_test4"));
 
 
         myRef.setValue(jokes);
