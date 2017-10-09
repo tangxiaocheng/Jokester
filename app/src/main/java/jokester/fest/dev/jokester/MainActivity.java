@@ -10,6 +10,9 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
@@ -48,7 +51,16 @@ public class MainActivity extends AppCompatActivity {
 
 
         DatabaseReference myRef = database.getReference("dev_jokes");
-        myRef.setValue("Hello, World! Funny jokes");
+
+
+        List<Joke> jokes = new ArrayList<Joke>();
+        jokes.add(new Joke("knife is one dollar","2017-10-9","nouser","0","jokeid_test"));
+        jokes.add(new Joke("knife is one dollar2","2017-10-9","nouser","0","jokeid_test2"));
+        jokes.add(new Joke("knife is one dollar3","2017-10-9","nouser","0","jokeid_test3"));
+        jokes.add(new Joke("knife is one dollar4","2017-10-9","nouser","0","jokeid_test4"));
+
+
+        myRef.setValue(jokes);
 
 
     }
